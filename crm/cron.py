@@ -1,4 +1,5 @@
-# File: crm/cron.py
+#["from gql.transport.requests import RequestsHTTPTransport", "from gql import", "gql", "Client"] 
+#File: crm/cron.py
 import datetime
 from pathlib import Path
 import requests
