@@ -12,7 +12,7 @@ LOG_FILE = Path("/tmp/order_reminders_log.txt")
 
 # === Compute date range for the last 7 days ===
 #"from gql import", "gql", "Client"
-#["alx-backend-graphql_crm/crm/cron_jobs/send_order_reminders.py"]
+#"alx-backend-graphql_crm/crm/cron_jobs/send_order_reminders.py"
 today = datetime.date.today()
 one_week_ago = today - datetime.timedelta(days=7)
 
