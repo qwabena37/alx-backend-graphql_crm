@@ -5,6 +5,8 @@ import re
 from datetime import datetime
 from crm.filters import CustomerFilter, ProductFilter, OrderFilter
 from .models import Customer, Product, Order
+from crm.models import Product  # Assuming you have a Product model
+
 
 
 class CustomerType(DjangoObjectType):
@@ -212,3 +214,45 @@ class Query(graphene.ObjectType):
 
     def resolve_name(self, info):
         return "Hello, GraphQL!"
+    
+
+# 1. Define GraphQL Type for Product
+class ProductType(DjangoObjectType):
+    class Meta:
+        model = Product
+        fields = ('id', 'name', 'stock')
+
+
+# 2. Define Mutation Class
+class UpdateLowStockProducts(graphene.Mutation):
+    class Arguments:
+        pass  # No input arguments needed
+
+    # Output fields
+    updated_products = graphene.List(ProductType)
+    message = graphene.String()
+
+    def mutate(self, info):
+        low_stock_products = Product.objects.filter(stock__lt=10)
+        updated_products = []
+
+        for product in low_stock_products:
+            product.stock += 10  # Simulate restock
+            product.save()
+            updated_products.append(product)
+
+        message = f"Updated {len(updated_products)} low-stock products."
+        return UpdateLowStockProducts(updated_products=updated_products, message=message)
+
+
+# 3. Add Mutation to Schema
+class Mutation(graphene.ObjectType):
+    update_low_stock_products = UpdateLowStockProducts.Field()
+
+
+class Query(graphene.ObjectType):
+    # You can keep your existing queries here
+    hello = graphene.String(default_value="Hello from CRM!")
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)

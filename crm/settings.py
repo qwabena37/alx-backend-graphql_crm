@@ -140,3 +140,6 @@ GRAPHENE = {
 CRONJOBS = [
     ('*/5 * * * *', 'crm.cron.log_crm_heartbeat'),  # every 5 minutes
 ]
+CRONJOBS = [
+    ('0 */12 * * *', 'crm.cron.update_low_stock'),
+]
