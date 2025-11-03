@@ -22,6 +22,7 @@ def generate_crm_report():
     data = response.data if hasattr(response, 'data') else {}
     
     # Extract data
+    # "import requests"
     total_customers = data.get('data', {}).get('customersCount', 0)
     total_orders = data.get('data', {}).get('ordersCount', 0)
     total_revenue = data.get('data', {}).get('totalRevenue', 0)
