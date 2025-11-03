@@ -1,3 +1,8 @@
+4. Celery Task for Generating CRM Reports
+
+Objective
+
+Configure a Celery task with Celery Beat to generate a weekly CRM report (summarizing total orders, customers, and revenue) and log it, integrating with the GraphQL schema.
 Instructions:
 
 1. Set Up Celery:
@@ -33,3 +38,4 @@ Create crm/README.md with steps to:
     Start Celery worker (celery -A crm worker -l info).
     Start Celery Beat (celery -A crm beat -l info).
     Verify logs in /tmp/crm_report_log.txt.
+
