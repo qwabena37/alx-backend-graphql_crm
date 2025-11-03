@@ -1,13 +1,13 @@
-steps to install Redis and dependencies.
-sudo apt update
-sudo apt install redis-server -y
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-sudo systemctl status redis-server
+1. install Redis and dependencies.
+   sudo apt update
+    sudo apt install redis-server -y
+   sudo systemctl enable redis-server
+   sudo systemctl start redis-server
+   sudo systemctl status redis-server
 
 
 
-Steps to Run migrations (python manage.py migrate).
+2. Steps to Run migrations (python manage.py migrate).
 ⚙️ Step 1: Activate your virtual environment
 
 If you created one earlier, activate it so Django runs in the correct environment:
@@ -65,7 +65,7 @@ Then apply them:
 
 python manage.py migrate
 
-Steps to start Celery worker (celery -A crm worker -l info).
+3. Steps to start Celery worker (celery -A crm worker -l info).
 ⚙️ Step 1: Make sure Redis is running
 
 Celery uses Redis as the message broker, so confirm Redis is active.
@@ -168,7 +168,7 @@ generate_crm_report.delay()
 
 If successful, you’ll see logs in your worker terminal and a report line in /tmp/crm_report_log.txt.
 
-Steps to start Celery Beat (celery -A crm beat -l info).
+4. Steps to start Celery Beat (celery -A crm beat -l info).
 ⚙️ Step 1: Make sure prerequisites are ready
 ✅ Redis running
 
@@ -283,7 +283,7 @@ The Celery worker terminal (Task succeeded)
 /tmp/crm_report_log.txt (your log file)
 
 
-Steps to Verify logs in /tmp/crm_report_log.txt.
+5. Steps to Verify logs in /tmp/crm_report_log.txt.
 🧩 Step 1: Ensure the task has run
 
 Make sure your Celery setup is working and the task has executed — either:
